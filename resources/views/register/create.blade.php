@@ -25,8 +25,13 @@
                         type="text"
                         name="name"
                         id="name"
+                        value="{{ old('name') }}"
                         required
                     >
+
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
@@ -41,8 +46,13 @@
                         type="text"
                         name="username"
                         id="username"
+                        value="{{ old('username') }}"
                         required
                     >
+
+                    @error('username')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -56,8 +66,13 @@
                         type="email"
                         name="email"
                         id="email"
+                        value="{{ old('email') }}"
                         required
                     >
+
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -74,6 +89,9 @@
                         required
                     >
 
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -82,6 +100,16 @@
                     >
                         Submit
                     </button>
+                </div>
+
+                @if ($errors->any())
+                    <ul>
+                         @foreach ($errors->all() as $error)
+                            <li class="text-red-500 text-xs">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                
             </form>
         </main>
     </section>
