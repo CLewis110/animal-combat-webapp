@@ -1,9 +1,7 @@
-<!DOCTYPE html>
+<x-layout>
 
 <title>Animal Combat App</title>
-<link rel="stylesheet" href="/app.css">
 
-<body>
 
     <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10 bg-gray-300 p-6 rounded-xl">
@@ -114,4 +112,4 @@
         </main>
     </section>
 
-</body>
+</x-layout>
