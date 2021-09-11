@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 
@@ -15,8 +16,16 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fighters', [
+        'fighters' => Animal::all()
+    ]);
 });
 
+
+Route::get('fighters/{fighter}', function ($id) {
+    return view('stats', [
+        'stats' => Animal::findOrFail($id)
+    ]);
+});
 Route::get('register', [RegisterController::class, 'create']);
 Route::post('register', [RegisterController::class, 'store']);
