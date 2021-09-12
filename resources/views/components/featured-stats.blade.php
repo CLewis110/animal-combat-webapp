@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <h1 class="text-3xl">
+                    <h1 class="font-bold text-3xl lg:text-4xl mb-10">
                         {{ $fighter->name }}
                     </h1>
 
@@ -45,7 +45,7 @@
                 <div class="hidden lg:block">
                     <a href="/fighters/{{ $fighter->id }}"
                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
-                    >Check Out Stats</a>
+                    >Check Stats</a>
                 </div>
             </footer>
         </div>
