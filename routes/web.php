@@ -23,8 +23,8 @@ Route::get('/', function () {
 
 
 Route::get('fighters/{fighter}', function ($id) {
-    return view('stats', [
-        'stats' => Animal::findOrFail($id)
+    return view('fighter', [
+        'fighter' => Animal::findOrFail($id)
     ]);
 });
 Route::get('register', [RegisterController::class, 'create']);
