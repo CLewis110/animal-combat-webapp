@@ -4,6 +4,7 @@ use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\FighterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +17,30 @@ use App\Http\Controllers\SessionsController;
 |
 */
 
+//Home page
 Route::get('/', function () {
     return view('fighters', [
         'fighters' => Animal::all()
     ]);
 });
 
+//TODO: Move this to FightersController -- Video 62
+//Specific Fighter Stats 
+Route::get('fighters/{fighter:id}', [FighterController::class, 'show']);
 
-Route::get('fighters/{fighter}', function ($id) {
-    return view('fighter', [
-        'fighter' => Animal::findOrFail($id)
-    ]);
-});
 
+//Register user
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
+//User login
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
+//User logout
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+//TODO: Figure out error using middleware EP 62ish
+//Admin 
+Route::get('admin/fighters/create', [FighterController::class, 'create']);
+Route::post('admin/fighters', [FighterController::class, 'store']);
