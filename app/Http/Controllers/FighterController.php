@@ -27,16 +27,18 @@ class FighterController extends Controller
     }
 
     public function store()
-    {
-            $attributes = request()->validate([
-            'name' => 'required|max:255|unique:animals,name',
-            'movement_type' => 'required',
-            'attack_type' => 'required',
-            'health' => 'required',
-            'strength' => 'required',
-            'defense' => 'required',
-            'speed' => 'required'
-        ]);
+    {   
+        $attributes = request()->validate([
+        'name' => 'required|max:255|unique:animals,name',
+        'movement_type' => 'required',
+        'attack_type' => 'required',
+        'category_id' => 'required',
+        'description' => 'required',
+        'health' => 'required',
+        'strength' => 'required',
+        'defense' => 'required',
+        'speed' => 'required'
+    ]);
 
 
         Animal::create($attributes);

@@ -20,11 +20,11 @@ use App\Http\Controllers\FighterController;
 //Home page
 Route::get('/', function () {
     return view('fighters', [
-        'fighters' => Animal::all()
+        'fighters' => Animal::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
-//TODO: Move this to FightersController -- Video 62
 //Specific Fighter Stats 
 Route::get('fighters/{fighter:id}', [FighterController::class, 'show']);
 

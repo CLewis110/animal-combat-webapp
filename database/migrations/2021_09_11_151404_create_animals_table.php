@@ -18,10 +18,13 @@ class CreateAnimalsTable extends Migration
             $table->string('name');
             $table->string('movement_type');
             $table->string('attack_type');
+            $table->foreignId('category_id');
+            $table->text('description');
             $table->integer('health');
             $table->integer('strength');
             $table->integer('defense');
             $table->integer('speed');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

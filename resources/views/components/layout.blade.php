@@ -17,7 +17,14 @@
             <div class="mt-8 md:mt-0 flex items-center">
 
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
+                        </x-slot>
+
+                        <x-dropdown-item href="/admin/fighters/create">New Fighter</x-dropdown-item>
+                        
+                    </x-dropdown>
 
                     <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
                         @csrf

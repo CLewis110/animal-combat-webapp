@@ -12,7 +12,7 @@
                 <div class="space-x-2">
                     <a href="#"
                        class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                       style="font-size: 10px">Add Categories Here</a>
+                       style="font-size: 10px">{{ $fighter->category->name }}</a>
 
                 </div>
 
@@ -29,7 +29,7 @@
 
             <div class="text-sm mt-2">
                 <p>
-                    This could be backstory and description of the animal/fighter.
+                    {{ $fighter->description }}
                 </p>
 
             </div>
@@ -38,7 +38,7 @@
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
-                        <h5 class="font-bold">Add Animal Creator Here</h5>
+                        <h5 class="font-bold">Created By {{ $fighter->user->name }}</h5>
                     </div>
                 </div>
 
