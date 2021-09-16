@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Animal;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -23,11 +24,19 @@ Route::get('/', function () {
         'fighters' => Animal::latest()->get(),
         'categories' => Category::all()
     ]);
-});
+})->name('home');
+
+//Sort by category
+Route::get('categories/{category:name}', function (Category $category) {
+    return view('fighters', [
+        'fighters' => $category->fighters,
+        'currentCategory' => $category,
+        'categories' => Category::all()
+    ]);
+})->name('category');
 
 //Specific Fighter Stats 
 Route::get('fighters/{fighter:id}', [FighterController::class, 'show']);
-
 
 //Register user
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
