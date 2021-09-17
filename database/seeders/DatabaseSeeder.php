@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Animal;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        //Issues truncating User and Animal using constraints for comments
+        //User::truncate();
         Category::truncate();
-        Animal::truncate();
+        //Animal::truncate();
 
 
         $user = User::create([
@@ -84,6 +86,27 @@ class DatabaseSeeder extends Seeder
             'defense' => '9',
             'speed' => '24',
             'user_id' => $user->id
+        ]);
+
+        Comment::create([
+            'body' => 'Hi, bye!',
+            'animal_id' => '1',
+            'user_id' => '2',
+
+        ]);
+
+        Comment::create([
+            'body' => 'Well hello there.',
+            'animal_id' => '2',
+            'user_id' => '1',
+            
+        ]);
+
+                Comment::create([
+            'body' => 'I\'m a troll',
+            'animal_id' => '3',
+            'user_id' => '2',
+            
         ]);
     }
 }
