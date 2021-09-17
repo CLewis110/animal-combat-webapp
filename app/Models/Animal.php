@@ -11,6 +11,14 @@ class Animal extends Model
 
     protected $guarded = [];
 
+    public function scopeFilter($query) 
+    {
+        if(request('search')) {
+            $query
+                ->where('name', 'like', '%' . request('search') . '%');
+        }
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

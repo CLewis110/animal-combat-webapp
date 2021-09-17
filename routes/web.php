@@ -19,12 +19,7 @@ use App\Http\Controllers\FighterController;
 */
 
 //Home page
-Route::get('/', function () {
-    return view('fighters', [
-        'fighters' => Animal::latest()->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
+Route::get('/', [FighterController::class, 'index'])->name('home');
 
 //Sort by category
 Route::get('categories/{category:name}', function (Category $category) {
@@ -49,7 +44,7 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 //User logout
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-//TODO: Figure out error using middleware EP 62ish
+//TODO: Figure out error using middleware EP 62ish -- Version of MAMP doesn't have PHP 8
 //Admin 
 Route::get('admin/fighters/create', [FighterController::class, 'create']);
 Route::post('admin/fighters', [FighterController::class, 'store']);
