@@ -1,8 +1,8 @@
 <x-layout>
-	<x-setting heading="Create New Fighter">
-		<form method="POST" action="/admin/fighters" enctype="multipart/form-data">
+	<x-setting :heading="'Edit Fighter: ' . $fighter->name">
+		<form method="POST" action="/admin/fighters/{{ $fighter->id }}" enctype="multipart/form-data">
 			@csrf 
-
+            @method('PATCH')
 				<div class="mb-6">
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         for="name"
@@ -206,7 +206,7 @@
                     @enderror
                 </div>
 
-                <x-form.submit-button>Create Fighter</x-form.submit-button>
+                <x-form.submit-button>Update Fighter</x-form.submit-button>
 		</form>
 	</x-setting>
 </x-layout>

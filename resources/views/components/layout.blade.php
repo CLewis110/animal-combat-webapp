@@ -23,15 +23,17 @@
                             <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
                         </x-slot>
 
-                        <x-dropdown-item href="/admin/fighters/create">New Fighter</x-dropdown-item>
+                        <x-dropdown-item href="/admin/fighters" :active="request()->is('admin/fighters')">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/admin/fighters/create" :active="request()->is('admin/fighters/create')">New Fighter</x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         
+
+                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+                            @csrf
+
+                            <button type="submit">Log Out</button>
+                        </form>
                     </x-dropdown>
-
-                    <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
-                        @csrf
-
-                        <button type="submit">Log Out</button>
-                    </form>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-3 text-xs font-bold uppercase">Log In</a>

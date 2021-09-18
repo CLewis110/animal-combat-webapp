@@ -2,10 +2,13 @@
 
 use App\Models\Animal;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\FighterController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminFighterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,9 @@ Route::get('categories/{category:name}', function (Category $category) {
 //Specific Fighter Stats 
 Route::get('fighters/{fighter:id}', [FighterController::class, 'show']);
 
+//Comments
+Route::post('fighters/{fighter:id}/comments', [CommentController::class, 'store']);
+
 //Register user
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
@@ -46,5 +52,8 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 
 //TODO: Figure out error using middleware EP 62ish -- Version of MAMP doesn't have PHP 8
 //Admin 
-Route::get('admin/fighters/create', [FighterController::class, 'create']);
-Route::post('admin/fighters', [FighterController::class, 'store']);
+Route::get('admin/fighters', [AdminFighterController::class, 'index']);
+Route::get('admin/fighters/create', [AdminFighterController::class, 'create']);
+Route::post('admin/fighters', [AdminFighterController::class, 'store']);
+Route::get('admin/fighters/{fighter}/edit', [AdminFighterController::class, 'edit']);
+Route::patch('admin/fighters/{fighter}', [AdminFighterController::class, 'update']);
